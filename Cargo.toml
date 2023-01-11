@@ -1,0 +1,10 @@
+[package]
+name = "window-funcs"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+differential-dataflow = { git = "https://github.com/TimelyDataflow/differential-dataflow.git" }
+timely = { git = "https://github.com/TimelyDataflow/timely-dataflow" }
