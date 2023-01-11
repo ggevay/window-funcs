@@ -26,8 +26,14 @@ fn main() {
 
             //let ps = xs.prefix_sum2(0, |_k, x, y| (x+y));
             //let ps = xs.prefix_sum2(0, |_k, _x, y| (*y));
-            let ps = xs.prefix_sum2(0, |_k, x, y| if *y == 0 {*x} else {*y});
+            //let ps = xs.prefix_sum2(0, |_k, x, y| if *y == 0 {*x} else {*y});
             //let ps = xs.prefix_sum2("z".to_owned(), |_k, x, y| (x.clone() + "+" + y));
+            let ps = xs.prefix_sum2(None, |_k, x: &Option<i32>, y: &Option<i32>|
+                match &y {
+                    Some(y) => Some(*y),
+                    None => *x
+                }
+            );
 
             let res = ps.join(&xs);
 
@@ -41,12 +47,12 @@ fn main() {
 
         input.advance_to(0);
 
-        input.insert(((3usize, ()), 5));
-        input.insert(((6usize, ()), 2));
-        input.insert(((8usize, ()), 3));
-        input.insert(((9usize, ()), 7));
-        //input.insert(((9usize, ()), 6)); // Duplicate index
-        input.insert(((20usize, ()), 4));
+        input.insert(((3usize, ()), Some(5)));
+        input.insert(((6usize, ()), Some(2)));
+        input.insert(((8usize, ()), Some(3)));
+        input.insert(((9usize, ()), Some(7)));
+        //input.insert(((9usize, ()), Some(6))); // Duplicate index
+        input.insert(((20usize, ()), Some(4)));
 
         // for i in 0usize .. 1000000 {
         //     input.insert(((i, ()), 1));
