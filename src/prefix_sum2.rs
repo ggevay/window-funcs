@@ -71,6 +71,7 @@ where
                 .reduce(move |&(_pos, _log, ref key), input, output| {
                     let mut result = (input[0].0).1.clone();
                     assert!(input.len() <= 2); // Fails if there are duplicate indexes in the input
+                    assert!(input.iter().all(|x| x.1 == 1 || x.1 == -1)); // multiplicities >1 should be eliminated before calling prefix sum
                     if input.len() > 1 { result = combine(key, &result, &(input[1].0).1); }
                     output.push((result, 1));
                 })
